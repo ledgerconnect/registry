@@ -3,6 +3,7 @@ const Promise = require('bluebird');
 const { init, work } = require('./src/index');
 const client = require('./helpers/client');
 const redis = require('./helpers/redis');
+require('./src/obyte');
 
 const app = express();
 const port = process.env.PORT || 4000;
