@@ -21,5 +21,5 @@ const check = () => {
 check();
 setInterval(() => {
   check();
-}, 10 * 60 * 1000);
+}, 20 * 60 * 1000);
 
