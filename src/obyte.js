@@ -4,6 +4,7 @@ const { sendMessage } = require('../helpers/discord');
 let lastState;
 const address = 'FAB6TH7IRAVHDLK2AAWY5YBE6CEBUACF';
 const params = { addresses: [address], last_ball_mci: 1000000000, amount: 1 };
+const interval = process.env.OBYTE_INTERVAL || 30 * 60 * 1000
 
 const check = () => {
   client.requestAsync('light/pick_divisible_coins_for_amount', params).then(result => {
@@ -21,5 +22,5 @@ const check = () => {
 check();
 setInterval(() => {
   check();
-}, 45 * 60 * 1000);
+}, interval);
 
