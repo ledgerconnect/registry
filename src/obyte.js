@@ -3,12 +3,11 @@ const { sendMessage } = require('../helpers/discord');
 
 let lastState;
 const address = 'FAB6TH7IRAVHDLK2AAWY5YBE6CEBUACF';
-const params = { addresses: [address], last_ball_mci: 1000000000, amount: 1 };
-const interval = process.env.OBYTE_INTERVAL || 30 * 60 * 1000
+const interval = process.env.OBYTE_INTERVAL || 30 * 60 * 1000;
 
 const check = () => {
-  client.requestAsync('light/pick_divisible_coins_for_amount', params).then(result => {
-    const state = JSON.stringify(result);
+  client.requestAsync('light/get_balances', [address]).then(result => {
+    const state = JSON.stringify(result[address]);
     if (lastState && lastState === state) {
       console.log('Oops, address is not posting');
       sendMessage(`Oops, nothing changed! <https://explorer.obyte.org/#${address}>`);
