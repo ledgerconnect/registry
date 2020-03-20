@@ -9,22 +9,13 @@ const permlink = 'top-apps';
 const body = 'Top apps';
 
 const data = [
-  // 'steemit',
-  'drugwars.app',
-  // 'steemmonsters',
-  'nextcolony',
-  'partiko.app',
-  'busy.app',
+  
+  'peakd.app',
+  'esteemapp',
   'actifit.app',
-  'steemhunt.com',
-  'share2steem.app',
-  'esteem-app',
-  'steempeak.app',
-  'dlike.app',
+  'threespeak',
   'buildteam.app',
   'smartsteem.app',
-  // 'magicdice-app',
-  // 'dtube.app',
 ];
 
 const metadata = { data };

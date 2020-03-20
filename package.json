@@ -1,8 +1,8 @@
 {
   "name": "registry",
-  "version": "0.1.0",
-  "description": "Steem on-chain apps registry",
-  "homepage": "https://steemscript.com",
+  "version": "0.1.1",
+  "description": "Hive on-chain apps registry",
+  "homepage": "https://hivesigner.com",
   "license": "MIT",
   "engines": {
     "node": "8.11.3"
@@ -34,9 +34,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/steemscript/registry.git"
+    "url": "https://github.com/ledgerconnect/registry.git"
   },
   "bugs": {
-    "url": "https://github.com/steemscript/registry/issues"
+    "url": "https://github.com/ledgerconnect/registry/issues"
   }
 }
