@@ -16,7 +16,6 @@
     "discord.js": "^11.5.1",
     "dsteem": "^0.11.2",
     "express": "^4.16.4",
-    "kbyte": "0.0.4",
     "redis": "^2.8.0"
   },
   "devDependencies": {

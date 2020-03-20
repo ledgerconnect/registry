@@ -8,16 +8,21 @@ const privateKey = dsteem.PrivateKey.fromString(process.env.STEEM_POSTING_WIF);
 const following = [];
 
 /** Work to do before streaming the chain */
-const init = () => {
-  return new Promise(async (resolve, reject) => {
+const init = () =>
+  new Promise(async (resolve, reject) => {
     const step = 100;
 
     let follows = await client.call('follow_api', 'get_following', [username, '', 'blog', step]);
-    let allFollows = follows;
+    const allFollows = follows;
 
     while (follows.length === step) {
       const startFrom = allFollows[allFollows.length - 1].following;
-      follows = await client.call('follow_api', 'get_following', [username, startFrom, 'blog', step]);
+      follows = await client.call('follow_api', 'get_following', [
+        username,
+        startFrom,
+        'blog',
+        step,
+      ]);
       allFollows.push(...follows.slice(1));
     }
     const following = allFollows.map(follow => follow.following);
@@ -25,14 +30,14 @@ const init = () => {
 
     resolve();
   });
-};
 
 /** Work to do at each new irreversible block */
 const work = (block, blockNum) => {
   const accounts = [];
   return new Promise((resolve, reject) => {
-    block.transactions.forEach((tx) => {
-      tx.operations.forEach((op) => {
+    block.transactions.forEach(tx => {
+      tx.operations.forEach(op => {
+        // eslint-disable-next-line default-case
         switch (op[0]) {
           case 'account_update': {
             let metadata = {};
@@ -40,9 +45,9 @@ const work = (block, blockNum) => {
               metadata = JSON.parse(op[1].json_metadata);
             } catch (err) {}
             if (
-              !following.includes(op[1].account)
-              && _.has(metadata, 'profile.type')
-              && metadata.profile.type === 'app'
+              !following.includes(op[1].account) &&
+              _.has(metadata, 'profile.type') &&
+              metadata.profile.type === 'app'
             ) {
               accounts.push({
                 following: op[1].account,
@@ -60,12 +65,9 @@ const work = (block, blockNum) => {
             break;
           }
         }
-      })
+      });
     });
-    Promise.each(
-      accounts,
-      (account) => followAccount(account.following, account.what)
-    ).then(() => {
+    Promise.each(accounts, account => followAccount(account.following, account.what)).then(() => {
       console.log(`Work done on block ${blockNum}`, accounts.length);
       resolve();
     });
@@ -81,9 +83,7 @@ const followAccount = (following, what = ['blog']) => {
     required_auths: [],
     required_posting_auths: [username],
   };
-  return client.broadcast.json(data, privateKey).then(
-    () => Promise.delay(3000)
-  );
+  return client.broadcast.json(data, privateKey).then(() => Promise.delay(3000));
 };
 
 module.exports = {
