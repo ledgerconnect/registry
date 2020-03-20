@@ -4,9 +4,6 @@
   "description": "Hive on-chain apps registry",
   "homepage": "https://hivesigner.com",
   "license": "MIT",
-  "engines": {
-    "node": "8.11.3"
-  },
   "scripts": {
     "start": "node start.js",
     "lint": "eslint 'src/**/*.js'",

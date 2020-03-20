@@ -9,7 +9,6 @@ const permlink = 'top-apps';
 const body = 'Top apps';
 
 const data = [
-  
   'peakd.app',
   'esteemapp',
   'actifit.app',
