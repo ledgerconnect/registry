@@ -1,20 +1,22 @@
-const dsteem = require('dsteem');
+const dhive = require('@hiveio/dhive');
 const client = require('./helpers/client');
 
-const username = process.env.STEEM_USERNAME;
-const privateKey = dsteem.PrivateKey.fromString(process.env.STEEM_POSTING_WIF);
+const username = process.env.BROADCASTER_USERNAME;
+const privateKey = dhive.PrivateKey.fromString(process.env.BROADCASTER_POSTING_WIF.toString());
 const rootPostAuthor = 'steemguest';
 const rootPostPermlink = 'oracle';
 const permlink = 'top-apps';
 const body = 'Top apps';
 
 const data = [
+  'ecency.app',
   'peakd.app',
-  'esteemapp',
+  'hive.blog',
+  'cryptobrewmaster',
+  'holybread.app',
   'actifit.app',
-  'threespeak',
+  'dapplr',
   'buildteam.app',
-  'smartsteem.app',
 ];
 
 const metadata = { data };
@@ -27,6 +29,7 @@ const comment = {
   body,
   json_metadata: JSON.stringify(metadata),
 };
-client.broadcast.comment(comment, privateKey)
+client.broadcast
+  .comment(comment, privateKey)
   .then(result => console.log(result))
   .catch(e => console.error(e));

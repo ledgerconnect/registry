@@ -1,3 +1,3 @@
-const dsteem = require('dsteem');
+const dhive = require('@hiveio/dhive');
 
-module.exports = new dsteem.Client(process.env.STEEMD_URL || 'https://api.hive.blog');
+module.exports = new dhive.Client(process.env.HIVED_URL || 'https://api.hive.blog');

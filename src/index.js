@@ -1,10 +1,10 @@
 const _ = require('lodash');
 const Promise = require('bluebird');
-const dsteem = require('dsteem');
+const dhive = require('@hiveio/dhive');
 const client = require('../helpers/client');
 
-const username = process.env.STEEM_USERNAME;
-const privateKey = dsteem.PrivateKey.fromString(process.env.STEEM_POSTING_WIF);
+const username = process.env.BROADCASTER_USERNAME;
+const privateKey = dhive.PrivateKey.fromString(process.env.BROADCASTER_POSTING_WIF);
 const following = [];
 
 /** Work to do before streaming the chain */
